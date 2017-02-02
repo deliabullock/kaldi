@@ -101,6 +101,7 @@ if [ $stage -le 2 ]; then
       --beam 15.0 --nj $nj --cmd "$cmd --mem 4G" $transform_opt \
       --skip-scoring true --allow-partial false \
        $dir $data $dir/lats
+  echo "$0: decode_seg, moving onto lats" 
 
   # the following is for diagnostics, e.g. it will give us the lattice depth.
   steps/diagnostic/analyze_lats.sh --cmd "$cmd" $lang $dir/lats

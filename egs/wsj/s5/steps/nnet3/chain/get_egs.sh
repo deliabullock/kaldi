@@ -58,10 +58,10 @@ left_tolerance=
 transform_dir=     # If supplied, overrides latdir as the place to find fMLLR transforms
 
 stage=0
-nj=15         # This should be set to the maximum number of jobs you are
+nj=2         # This should be set to the maximum number of jobs you are
               # comfortable to run in parallel; you can increase it if your disk
               # speed is greater and you have more machines.
-max_shuffle_jobs_run=50  # the shuffle jobs now include the nnet3-chain-normalize-egs command,
+max_shuffle_jobs_run=15  # the shuffle jobs now include the nnet3-chain-normalize-egs command,
                          # which is fairly CPU intensive, so we can run quite a few at once
                          # without overloading the disks.
 srand=0     # rand seed for nnet3-chain-get-egs, nnet3-chain-copy-egs and nnet3-chain-shuffle-egs
@@ -249,15 +249,21 @@ num_archives=$[$num_frames/$frames_per_iter+1]
 # We may have to first create a smaller number of larger archives, with number
 # $num_archives_intermediate, if $num_archives is more than the maximum number
 # of open filehandles that the system allows per process (ulimit -n).
-max_open_filehandles=$(ulimit -n) || exit 1
+max_open_filehandles=256
+max_files_temp=$(ulimit -n) || exit 1
 num_archives_intermediate=$num_archives
 archives_multiple=1
+echo "$0: creating processes safe guards"
 while [ $[$num_archives_intermediate+4] -gt $max_open_filehandles ]; do
   archives_multiple=$[$archives_multiple+1]
   num_archives_intermediate=$[$num_archives/$archives_multiple] || exit 1;
 done
 # now make sure num_archives is an exact multiple of archives_multiple.
 num_archives=$[$archives_multiple*$num_archives_intermediate] || exit 1;
+echo "$0: max files open:$max_open_filehandles"
+echo "$0: num_archives_inter:$num_archives_intermediate"
+echo "$0: num archives total:$num_archives"
+echo "$0: max files from user:$max_files_temp"
 
 echo $num_archives >$dir/info/num_archives
 echo $frames_per_eg >$dir/info/frames_per_eg
@@ -389,7 +395,7 @@ if [ $stage -le 4 ]; then
 fi
 
 if [ $stage -le 5 ]; then
-  echo "$0: recombining and shuffling order of archives on disk"
+  echo "$0: recombining and shuffling order of archives on disk: $nj"
   # combine all the "egs_orig.*.JOB.scp" (over the $nj splits of the data) and
   # shuffle the order, writing to the egs.JOB.ark
 
@@ -400,10 +406,12 @@ if [ $stage -le 5 ]; then
   done
 
   if [ $archives_multiple == 1 ]; then # normal case.
+echo "here?"
     $cmd --max-jobs-run $max_shuffle_jobs_run --mem 8G JOB=1:$num_archives_intermediate $dir/log/shuffle.JOB.log \
       nnet3-chain-normalize-egs $chaindir/normalization.fst "ark:cat $egs_list|" ark:- \| \
       nnet3-chain-shuffle-egs --srand=\$[JOB+$srand] ark:- ark:$dir/cegs.JOB.ark  || exit 1;
   else
+echo "or here?"
     # we need to shuffle the 'intermediate archives' and then split into the
     # final archives.  we create soft links to manage this splitting, because
     # otherwise managing the output names is quite difficult (and we don't want

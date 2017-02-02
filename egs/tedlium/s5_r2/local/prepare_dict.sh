@@ -16,10 +16,10 @@ srcdict=db/TEDLIUM_release2/TEDLIUM.152k.dic
 
 # Join dicts and fix some troubles
 cat $srcdict | grep -v -w "<s>" | grep -v -w "</s>" | grep -v -w "<unk>" | \
-  LANG= LC_ALL= sort | sed 's:([0-9])::g' > $dir/lexicon_words.txt
+	  LANG= LC_ALL= sort | sed 's:([0-9])::g' > $dir/lexicon_words_orig.txt
 
 cat $dir/lexicon_words.txt | awk '{ for(n=2;n<=NF;n++){ phones[$n] = 1; }} END{for (p in phones) print p;}' | \
-  grep -v SIL | sort > $dir/nonsilence_phones.txt
+	  grep -v SIL | sort > $dir/nonsilence_phones.txt
 
 ( echo SIL; echo NSN ) > $dir/silence_phones.txt
 

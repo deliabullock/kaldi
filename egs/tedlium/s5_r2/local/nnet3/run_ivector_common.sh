@@ -9,7 +9,7 @@ set -e -o pipefail
 
 
 stage=0
-nj=30
+nj=16
 min_seg_len=1.55  # min length in seconds... we do this because chain training
                   # will discard segments shorter than 1.5 seconds.   Must remain in sync
                   # with the same option given to prepare_lores_feats_and_alignments.sh
@@ -36,19 +36,18 @@ for f in data/${train_set}/feats.scp ${gmm_dir}/final.mdl; do
   fi
 done
 
-
-
 if [ $stage -le 2 ] && [ -f data/${train_set}_sp_hires/feats.scp ]; then
   echo "$0: data/${train_set}_sp_hires/feats.scp already exists."
   echo " ... Please either remove it, or rerun this script with stage > 2."
   exit 1
 fi
 
-
 if [ $stage -le 1 ]; then
   echo "$0: preparing directory for speed-perturbed data"
   utils/data/perturb_data_dir_speed_3way.sh data/${train_set} data/${train_set}_sp
 fi
+
+echo -e "------------------stage 1 done inside run_ivector_common.sh--------------------\n"
 
 if [ $stage -le 2 ]; then
   echo "$0: creating high-resolution MFCC features"
@@ -78,6 +77,8 @@ if [ $stage -le 2 ]; then
   done
 fi
 
+echo -e "------------------stage 2 done inside run_ivector_common.sh--------------------\n"
+
 if [ $stage -le 3 ]; then
   echo "$0: combining short segments of speed-perturbed high-resolution MFCC training data"
   # we have to combine short segments or we won't be able to train chain models
@@ -89,6 +90,8 @@ if [ $stage -le 3 ]; then
   cp data/${train_set}_sp_hires/cmvn.scp data/${train_set}_sp_hires_comb/
   utils/fix_data_dir.sh data/${train_set}_sp_hires_comb/
 fi
+
+echo -e "------------------stage 3 done inside run_ivector_common.sh--------------------\n"
 
 if [ $stage -le 4 ]; then
   echo "$0: selecting segments of hires training data that were also present in the"
@@ -122,6 +125,7 @@ if [ $stage -le 4 ]; then
       $gmm_dir exp/nnet3${nnet3_affix}/tri5
 fi
 
+echo -e "------------------stage 4 done inside run_ivector_common.sh--------------------\n"
 
 if [ $stage -le 5 ]; then
   echo "$0: computing a subset of data to train the diagonal UBM."
@@ -140,21 +144,25 @@ if [ $stage -le 5 ]; then
 
   echo "$0: training the diagonal UBM."
   # Use 512 Gaussians in the UBM.
-  steps/online/nnet2/train_diag_ubm.sh --cmd "$train_cmd" --nj 30 \
+  steps/online/nnet2/train_diag_ubm.sh --cmd "$train_cmd" --nj $nj \
     --num-frames 700000 \
     --num-threads $num_threads_ubm \
     ${temp_data_root}/${train_set}_sp_hires_subset 512 \
     exp/nnet3${nnet3_affix}/tri5 exp/nnet3${nnet3_affix}/diag_ubm
 fi
 
+echo -e "------------------stage 5 done inside run_ivector_common.sh--------------------\n"
+
 if [ $stage -le 6 ]; then
   # Train the iVector extractor.  Use all of the speed-perturbed data since iVector extractors
   # can be sensitive to the amount of data.  The script defaults to an iVector dimension of
   # 100.
   echo "$0: training the iVector extractor"
-  steps/online/nnet2/train_ivector_extractor.sh --cmd "$train_cmd" --nj 10 \
+  steps/online/nnet2/train_ivector_extractor.sh --cmd "$train_cmd" --nj 2 \
     data/${train_set}_sp_hires exp/nnet3${nnet3_affix}/diag_ubm exp/nnet3${nnet3_affix}/extractor || exit 1;
 fi
+
+echo -e "------------------stage 6 done inside run_ivector_common.sh--------------------\n"
 
 if [ $stage -le 7 ]; then
   # note, we don't encode the 'max2' in the name of the ivectordir even though
@@ -195,12 +203,16 @@ if [ -f data/${train_set}_sp/feats.scp ] && [ $stage -le 9 ]; then
   exit 1;
 fi
 
+echo -e "------------------stage 7 done inside run_ivector_common.sh--------------------\n"
+
 
 if [ $stage -le 8 ]; then
   echo "$0: preparing directory for low-resolution speed-perturbed data (for alignment)"
   utils/data/perturb_data_dir_speed_3way.sh \
     data/${train_set} data/${train_set}_sp
 fi
+
+echo -e "------------------stage 8 done inside run_ivector_common.sh--------------------\n"
 
 if [ $stage -le 9 ]; then
   echo "$0: making MFCC features for low-resolution speed-perturbed data"
@@ -211,6 +223,8 @@ if [ $stage -le 9 ]; then
   echo ".. speed-perturbed segments were too short."
   utils/fix_data_dir.sh data/${train_set}_sp
 fi
+
+echo -e "------------------stage 9 done inside run_ivector_common.sh--------------------\n"
 
 if [ $stage -le 10 ]; then
   echo "$0: combining short segments of low-resolution speed-perturbed  MFCC data"
@@ -223,6 +237,8 @@ if [ $stage -le 10 ]; then
   utils/fix_data_dir.sh $dest
 fi
 
+echo -e "------------------stage 10 done inside run_ivector_common.sh--------------------\n"
+
 if [ $stage -le 11 ]; then
   if [ -f $ali_dir/ali.1.gz ]; then
     echo "$0: alignments in $ali_dir appear to already exist.  Please either remove them "
@@ -234,5 +250,6 @@ if [ $stage -le 11 ]; then
          data/${train_set}_sp_comb data/lang $gmm_dir $ali_dir
 fi
 
+echo -e "------------------stage 11 done inside run_ivector_common.sh--------------------\n"
 
 exit 0;

@@ -42,8 +42,8 @@ set -e -o pipefail
 # First the options that are passed through to run_ivector_common.sh
 # (some of which are also used in this script directly).
 stage=0
-nj=30
-decode_nj=30
+nj=2
+decode_nj=2
 min_seg_len=1.55
 chunk_left_context=40
 chunk_right_context=0
@@ -131,7 +131,7 @@ fi
 if [ $stage -le 15 ]; then
   # Get the alignments as lattices (gives the chain training more freedom).
   # use the same num-jobs as the alignments
-  steps/align_fmllr_lats.sh --nj 100 --cmd "$train_cmd" ${lores_train_data_dir} \
+  steps/align_fmllr_lats.sh --nj $nj --cmd "$train_cmd" ${lores_train_data_dir} \
     data/lang $gmm_dir $lat_dir
   rm $lat_dir/fsts.*.gz # save space
 fi
@@ -225,7 +225,7 @@ if [ $stage -le 18 ]; then
     --trainer.deriv-truncate-margin 10 \
     --trainer.optimization.shrink-value 0.99 \
     --trainer.optimization.num-jobs-initial 2 \
-    --trainer.optimization.num-jobs-final 12 \
+    --trainer.optimization.num-jobs-final 2 \
     --trainer.optimization.initial-effective-lrate 0.001 \
     --trainer.optimization.final-effective-lrate 0.0001 \
     --trainer.optimization.momentum 0.0 \

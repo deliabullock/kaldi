@@ -77,7 +77,7 @@ echo -e "------------------stage 5 done--------------------\n"
 if [ $stage == 6 ]; then
   for set in test dev train; do
     dir=data/$set
-    steps/make_mfcc.sh --nj 30 --cmd "$train_cmd" $dir
+    steps/make_mfcc.sh --nj $nj --cmd "$train_cmd" $dir
     steps/compute_cmvn_stats.sh $dir
   done
 fi
@@ -93,7 +93,7 @@ echo -e "------------------stage 7 done--------------------\n"
 
 # Train
 if [ $stage == 8 ]; then
-  steps/train_mono.sh --nj 20 --cmd "$train_cmd" \
+  steps/train_mono.sh --nj $nj --cmd "$train_cmd" \
     data/train_10kshort_nodup data/lang_nosp exp/mono
 fi
 echo -e "------------------stage 8 done--------------------\n" 
@@ -111,12 +111,12 @@ if [ $stage == 10 ]; then
 
   # The slowest part about this decoding is the scoring, which we can't really
   # control as the bottleneck is the NIST tools.
-  for dset in dev test; do
-    steps/decode.sh --nj $decode_nj --cmd "$decode_cmd"  --num-threads 4 \
-      exp/tri1/graph_nosp data/${dset} exp/tri1/decode_nosp_${dset}
-    steps/lmrescore_const_arpa.sh  --cmd "$decode_cmd" data/lang_nosp data/lang_nosp_rescore \
-       data/${dset} exp/tri1/decode_nosp_${dset} exp/tri1/decode_nosp_${dset}_rescore
-  done
+#  for dset in dev test; do
+#    steps/decode.sh --nj $decode_nj --cmd "$decode_cmd"  --num-threads 4 \
+#      exp/tri1/graph_nosp data/${dset} exp/tri1/decode_nosp_${dset}
+#    steps/lmrescore_const_arpa.sh  --cmd "$decode_cmd" data/lang_nosp data/lang_nosp_rescore \
+#       data/${dset} exp/tri1/decode_nosp_${dset} exp/tri1/decode_nosp_${dset}_rescore
+#  done
 fi
 echo -e "------------------stage 10 done--------------------\n" 
 
@@ -131,12 +131,12 @@ echo -e "------------------stage 11 done--------------------\n"
 
 if [ $stage == 12 ]; then
   utils/mkgraph.sh data/lang_nosp exp/tri2 exp/tri2/graph_nosp
-  for dset in dev test; do
-    steps/decode.sh --nj $decode_nj --cmd "$decode_cmd"  --num-threads 4 \
-      exp/tri2/graph_nosp data/${dset} exp/tri2/decode_nosp_${dset}
-    steps/lmrescore_const_arpa.sh  --cmd "$decode_cmd" data/lang_nosp data/lang_nosp_rescore \
-       data/${dset} exp/tri2/decode_nosp_${dset} exp/tri2/decode_nosp_${dset}_rescore
-  done
+#  for dset in dev test; do
+#    steps/decode.sh --nj $decode_nj --cmd "$decode_cmd"  --num-threads 4 \
+#      exp/tri2/graph_nosp data/${dset} exp/tri2/decode_nosp_${dset}
+#    steps/lmrescore_const_arpa.sh  --cmd "$decode_cmd" data/lang_nosp data/lang_nosp_rescore \
+#       data/${dset} exp/tri2/decode_nosp_${dset} exp/tri2/decode_nosp_${dset}_rescore
+#  done
 fi
 echo -e "------------------stage 12 done--------------------\n" 
 
@@ -157,12 +157,12 @@ if [ $stage == 14 ]; then
 
   utils/mkgraph.sh data/lang exp/tri2 exp/tri2/graph
 
-  for dset in dev test; do
-    steps/decode.sh --nj $decode_nj --cmd "$decode_cmd"  --num-threads 4 \
-      exp/tri2/graph data/${dset} exp/tri2/decode_${dset}
-    steps/lmrescore_const_arpa.sh --cmd "$decode_cmd" data/lang data/lang_rescore \
-       data/${dset} exp/tri2/decode_${dset} exp/tri2/decode_${dset}_rescore
-  done
+#  for dset in dev test; do
+#    steps/decode.sh --nj $decode_nj --cmd "$decode_cmd"  --num-threads 4 \
+#      exp/tri2/graph data/${dset} exp/tri2/decode_${dset}
+#    steps/lmrescore_const_arpa.sh --cmd "$decode_cmd" data/lang data/lang_rescore \
+#       data/${dset} exp/tri2/decode_${dset} exp/tri2/decode_${dset}_rescore
+#  done
 fi
 echo -e "------------------stage 14 done--------------------\n" 
 
@@ -175,12 +175,12 @@ if [ $stage == 15 ]; then
 
   utils/mkgraph.sh data/lang exp/tri3 exp/tri3/graph
 
-  for dset in dev test; do
-    steps/decode_fmllr.sh --nj $decode_nj --cmd "$decode_cmd"  --num-threads 4 \
-      exp/tri3/graph data/${dset} exp/tri3/decode_${dset}
-    steps/lmrescore_const_arpa.sh --cmd "$decode_cmd" data/lang data/lang_rescore \
-       data/${dset} exp/tri3/decode_${dset} exp/tri3/decode_${dset}_rescore
-  done
+#  for dset in dev test; do
+#    steps/decode_fmllr.sh --nj $decode_nj --cmd "$decode_cmd"  --num-threads 4 \
+#      exp/tri3/graph data/${dset} exp/tri3/decode_${dset}
+#    steps/lmrescore_const_arpa.sh --cmd "$decode_cmd" data/lang data/lang_rescore \
+#       data/${dset} exp/tri3/decode_${dset} exp/tri3/decode_${dset}_rescore
+#  done
 fi
 echo -e "------------------stage 15 done--------------------\n" 
 

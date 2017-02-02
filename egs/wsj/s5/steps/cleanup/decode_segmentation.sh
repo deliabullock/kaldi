@@ -126,6 +126,7 @@ if [ ! -z "$transform_dir" ]; then # add transforms to features...
     for n in $(seq $nj_orig); do cat $transform_dir/trans.$n; done | \
        copy-feats ark:- ark,scp:$dir/trans.ark,$dir/trans.scp || exit 1;
     feats="$feats transform-feats --utt2spk=ark:$sdata/JOB/utt2spk scp:$dir/trans.scp ark:- ark:- |"
+    echo "$0: copying finished: $transform_dir"
   else
     # number of jobs matches with alignment dir.
     feats="$feats transform-feats --utt2spk=ark:$sdata/JOB/utt2spk ark:$transform_dir/trans.JOB ark:- ark:- |"
@@ -133,14 +134,17 @@ if [ ! -z "$transform_dir" ]; then # add transforms to features...
 fi
 
 if [ $stage -le 0 ]; then
+  echo "$0: starting"
   if [ -f "$graphdir/num_pdfs" ]; then
     [ "`cat $graphdir/num_pdfs`" -eq `am-info --print-args=false $model | grep pdfs | awk '{print $NF}'` ] || \
       { echo "Mismatch in number of pdfs with $model"; exit 1; }
   fi
+  echo "$0: finished 1"
   $cmd --num-threads $num_threads JOB=1:$nj $dir/log/decode.JOB.log \
     gmm-latgen-faster$thread_string --max-active=$max_active --beam=$beam --lattice-beam=$lattice_beam \
     --acoustic-scale=$acwt --allow-partial=$allow_partial --word-symbol-table=$graphdir/words.txt \
     $model "$HCLG" "$feats" "ark:|gzip -c > $dir/lat.JOB.gz" || exit 1;
+  echo "$0: finished 2"
 fi
 
 if ! $skip_scoring ; then

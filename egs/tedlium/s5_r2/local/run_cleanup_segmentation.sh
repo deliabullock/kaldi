@@ -25,8 +25,8 @@ cleanup_stage=0
 data=data/train
 cleanup_affix=cleaned
 srcdir=exp/tri3
-nj=100
-decode_nj=16
+nj=8
+decode_nj=4
 decode_num_threads=4
 
 . ./path.sh
@@ -40,7 +40,7 @@ cleaned_dir=${srcdir}_${cleanup_affix}
 
 if [ $stage -le 1 ]; then
   # This does the actual data cleanup.
-  steps/cleanup/clean_and_segment_data.sh --stage $cleanup_stage --nj $nj --cmd "$train_cmd" \
+  steps/cleanup/clean_and_segment_data.sh --stage 2 --nj $nj --cmd "$train_cmd" \
     $data data/lang $srcdir $dir $cleaned_data
 fi
 
@@ -58,11 +58,11 @@ if [ $stage -le 4 ]; then
   # Test with the models trained on cleaned-up data.
   utils/mkgraph.sh data/lang ${cleaned_dir} ${cleaned_dir}/graph
 
-  for dset in dev test; do
-    steps/decode_fmllr.sh --nj $decode_nj --num-threads $decode_num_threads \
-       --cmd "$decode_cmd"  --num-threads 4 \
-       ${cleaned_dir}/graph data/${dset} ${cleaned_dir}/decode_${dset}
-    steps/lmrescore_const_arpa.sh --cmd "$decode_cmd" data/lang data/lang_rescore \
-       data/${dset} ${cleaned_dir}/decode_${dset} ${cleaned_dir}/decode_${dset}_rescore
-  done
+#  for dset in dev test; do
+#    steps/decode_fmllr.sh --nj $decode_nj --num-threads $decode_num_threads \
+#       --cmd "$decode_cmd"  --num-threads 4 \
+#       ${cleaned_dir}/graph data/${dset} ${cleaned_dir}/decode_${dset}
+#    steps/lmrescore_const_arpa.sh --cmd "$decode_cmd" data/lang data/lang_rescore \
+#       data/${dset} ${cleaned_dir}/decode_${dset} ${cleaned_dir}/decode_${dset}_rescore
+#  done
 fi
