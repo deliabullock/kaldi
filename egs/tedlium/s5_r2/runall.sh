@@ -1,10 +1,10 @@
 #!/bin/bash
 
-for i in `seq 17 17`
+for i in `seq 0 17`
 do
-  ./run.sh --stage $i >& ./output/28_APRIL_17/out.$i
+  ./run.sh --stage $i >& ./output/results/out.$i
   echo $i
 done;
 
-./results.sh > ./output/28_APRIL_17/performance.out
+./results.sh > ./output/results/performance.out
 echo "Finished calculating results"
