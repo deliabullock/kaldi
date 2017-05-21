@@ -18,6 +18,9 @@ srcdict=db/TEDLIUM_release2/TEDLIUM.152k.dic
 cat $srcdict | grep -v -w "<s>" | grep -v -w "</s>" | grep -v -w "<unk>" | \
 	  LANG= LC_ALL= sort | sed 's:([0-9])::g' > $dir/lexicon_words_orig.txt
 
+#!/bin/bash
+python ./converty.py
+
 cat $dir/lexicon_words.txt | awk '{ for(n=2;n<=NF;n++){ phones[$n] = 1; }} END{for (p in phones) print p;}' | \
 	  grep -v SIL | sort > $dir/nonsilence_phones.txt
 
