@@ -1,0 +1,61 @@
+------------------stage 0 done--------------------
+
+------------------stage 1 done--------------------
+
+------------------stage 2 done--------------------
+
+------------------stage 3 done--------------------
+
+------------------stage 4 done--------------------
+
+------------------stage 5 done--------------------
+
+------------------stage 6 done--------------------
+
+------------------stage 7 done--------------------
+
+------------------stage 8 done--------------------
+
+------------------stage 9 done--------------------
+
+tree-info exp/tri1/tree 
+tree-info exp/tri1/tree 
+fsttablecompose data/lang_nosp/L_disambig.fst data/lang_nosp/G.fst 
+fstminimizeencoded 
+fstpushspecial 
+fstdeterminizestar --use-log=true 
+WARNING (fstpushspecial[5.0.37~1-e227e]:Iterate():push-special.cc:182) push-special: finished 200 iterations without converging.  Output will be inaccurate.
+fstisstochastic data/lang_nosp/tmp/LG.fst 
+-0.0271517 -0.0636126
+[info]: LG not stochastic.
+fstcomposecontext --context-size=3 --central-position=1 --read-disambig-syms=data/lang_nosp/phones/disambig.int --write-disambig-syms=data/lang_nosp/tmp/disambig_ilabels_3_1.int data/lang_nosp/tmp/ilabels_3_1.24897 
+fstisstochastic data/lang_nosp/tmp/CLG_3_1.fst 
+0 -0.0636126
+[info]: CLG not stochastic.
+make-h-transducer --disambig-syms-out=exp/tri1/graph_nosp/disambig_tid.int --transition-scale=1.0 data/lang_nosp/tmp/ilabels_3_1 exp/tri1/tree exp/tri1/final.mdl 
+fsttablecompose exp/tri1/graph_nosp/Ha.fst data/lang_nosp/tmp/CLG_3_1.fst 
+fstminimizeencoded 
+fstdeterminizestar --use-log=true 
+fstrmsymbols exp/tri1/graph_nosp/disambig_tid.int 
+fstrmepslocal 
+fstisstochastic exp/tri1/graph_nosp/HCLGa.fst 
+0.000488162 -0.108841
+HCLGa is not stochastic
+add-self-loops --self-loop-scale=0.1 --reorder=true exp/tri1/final.mdl 
+------------------stage 10 done--------------------
+
+------------------stage 11 done--------------------
+
+------------------stage 12 done--------------------
+
+------------------stage 13 done--------------------
+
+------------------stage 14 done--------------------
+
+------------------stage 15 done--------------------
+
+------------------stage 16 done--------------------
+
+------------------stage 17 done--------------------
+
+./run.sh: success.

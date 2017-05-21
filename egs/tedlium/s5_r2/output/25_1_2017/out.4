@@ -1,0 +1,127 @@
+------------------stage 0 done--------------------
+
+------------------stage 1 done--------------------
+
+------------------stage 2 done--------------------
+
+------------------stage 3 done--------------------
+
+local/ted_train_lm.sh 
+Not installing the pocolm toolkit since it is already there.
+local/ted_train_lm.sh: Getting the Data sources
+local/ted_train_lm.sh: training the unpruned LM
+/proj/comse69984/dmb2238/kaldi-lstm-trunk/egs/tedlium/s5_r2/../../../tools/pocolm/scripts/train_lm.py --wordlist=data/local/local_lm/data/wordlist --num-splits=10 --warm-start-ratio=20 --limit-unk-history=true --fold-dev-into=ted --bypass-metaparameter-optimization=0.854,0.0722,0.5808,0.338,0.166,0.015,0.999,0.6228,0.340,0.172,0.999,0.788,0.501,0.406 "--min-counts=train=2 ted=1" data/local/local_lm/data/text 4 data/local/local_lm/data/work data/local/local_lm/data/wordlist_4_train-2_ted-1.pocolm
+train_lm.py: Getting word counts... log in data/local/local_lm/data/work/log/get_word_counts.log
+train_lm.py: Getting unigram weights... log in data/local/local_lm/data/work/log/get_unigram_weights.log
+train_lm.py: Generating vocab with wordlist[data/local/local_lm/data/wordlist]... log in data/local/local_lm/data/work/log/wordlist/wordlist_to_vocab.log
+train_lm.py: Preparing int data... log in data/local/local_lm/data/work/log/wordlist/prepare_int_data.log
+train_lm.py: Getting ngram counts... log in data/local/local_lm/data/work/log/wordlist_4_train-2_ted-1/get_counts.log
+get_counts.py: extending min-counts from 2.0,2.0 to 2.0,2.0 since ngram order is 4
+get_counts.py: extending min-counts from 1.0,1.0 to 1.0,1.0 since ngram order is 4
+validate_vocab.py: validated file data/local/local_lm/data/work/int_wordlist/words.txt with 152215 entries.
+train_lm.py: Bypass optimization steps
+train_lm.py: Making lm dir... log in data/local/local_lm/data/work/log/wordlist_4_train-2_ted-1/make_lm_dir.log
+validate_vocab.py: validated file data/local/local_lm/data/work/counts_wordlist_4_train-2_ted-1/words.txt with 152215 entries.
+validate_count_dir.py: validated counts directory data/local/local_lm/data/work/counts_wordlist_4_train-2_ted-1
+validate_vocab.py: validated file data/local/local_lm/data/wordlist_4_train-2_ted-1.pocolm/words.txt with 152215 entries.
+validate_lm_dir.py: validated LM directory data/local/local_lm/data/wordlist_4_train-2_ted-1.pocolm
+train_lm.py: Ngram counts: 152214 + 19196506 + 20948321 + 24603017 = 64900058
+train_lm.py: Success to train lm, output dir is data/local/local_lm/data/wordlist_4_train-2_ted-1.pocolm.
+train_lm.py: You may call format_arpa_lm.py to get ARPA-format lm, 
+train_lm.py: Or call prune_lm_dir.py to prune the lm.
+get_data_prob.py: log-prob of data/local/local_lm/data/real_dev_set.txt given model data/local/local_lm/data/wordlist_4_train-2_ted-1.pocolm was -5.05963621629 per word [perplexity = 157.533197888] over 18290.0 words.
+local/ted_train_lm.sh: pruning the LM (to larger size)
+validate_vocab.py: validated file data/local/local_lm/data/wordlist_4_train-2_ted-1.pocolm/words.txt with 152215 entries.
+validate_lm_dir.py: validated LM directory data/local/local_lm/data/wordlist_4_train-2_ted-1.pocolm
+float-counts-estimate 152215 data/local/local_lm/data/lm_4_prune_big/work/step0/float.all data/local/local_lm/data/lm_4_prune_big/work/step0/stats.all /dev/null /dev/null /dev/null /dev/null 
+float-counts-prune 0.02 152215 data/local/local_lm/data/lm_4_prune_big/work/step0/float.all data/local/local_lm/data/lm_4_prune_big/work/step0/protected.all data/local/local_lm/data/lm_4_prune_big/work/step1/float.1 data/local/local_lm/data/lm_4_prune_big/work/step1/float.2 data/local/local_lm/data/lm_4_prune_big/work/step1/float.3 data/local/local_lm/data/lm_4_prune_big/work/step1/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step1/log/float_counts_prune.log
+float-counts-estimate: logprob per word was -5.16351 over 2.10676e+07 words.
+float-counts-estimate: auxiliary function improvement per word was [ 4.60196e-12 + 1.39112e-09 + 3.89624e-09 + 5.69482e-09 ] = 1.09868e-08
+2.10676e+07 -1.08783e+08 9.69524e-05 0.0293076 0.0820846 0.119976 
+
+float-counts-prune 0.0315246582031 152215 data/local/local_lm/data/lm_4_prune_big/work/step3/float.all data/local/local_lm/data/lm_4_prune_big/work/step3/protected.all data/local/local_lm/data/lm_4_prune_big/work/step4/float.1 data/local/local_lm/data/lm_4_prune_big/work/step4/float.2 data/local/local_lm/data/lm_4_prune_big/work/step4/float.3 data/local/local_lm/data/lm_4_prune_big/work/step4/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step4/log/float_counts_prune.log
+float-counts-prune 0.0528649892658 152215 data/local/local_lm/data/lm_4_prune_big/work/step6/float.all data/local/local_lm/data/lm_4_prune_big/work/step6/protected.all data/local/local_lm/data/lm_4_prune_big/work/step7/float.1 data/local/local_lm/data/lm_4_prune_big/work/step7/float.2 data/local/local_lm/data/lm_4_prune_big/work/step7/float.3 data/local/local_lm/data/lm_4_prune_big/work/step7/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step7/log/float_counts_prune.log
+float-counts-prune 0.0790296741997 152215 data/local/local_lm/data/lm_4_prune_big/work/step9/float.all data/local/local_lm/data/lm_4_prune_big/work/step9/protected.all data/local/local_lm/data/lm_4_prune_big/work/step10/float.1 data/local/local_lm/data/lm_4_prune_big/work/step10/float.2 data/local/local_lm/data/lm_4_prune_big/work/step10/float.3 data/local/local_lm/data/lm_4_prune_big/work/step10/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step10/log/float_counts_prune.log
+float-counts-prune 0.106046593462 152215 data/local/local_lm/data/lm_4_prune_big/work/step12/float.all data/local/local_lm/data/lm_4_prune_big/work/step12/protected.all data/local/local_lm/data/lm_4_prune_big/work/step13/float.1 data/local/local_lm/data/lm_4_prune_big/work/step13/float.2 data/local/local_lm/data/lm_4_prune_big/work/step13/float.3 data/local/local_lm/data/lm_4_prune_big/work/step13/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step13/log/float_counts_prune.log
+float-counts-prune 0.130833301815 152215 data/local/local_lm/data/lm_4_prune_big/work/step15/float.all data/local/local_lm/data/lm_4_prune_big/work/step15/protected.all data/local/local_lm/data/lm_4_prune_big/work/step16/float.1 data/local/local_lm/data/lm_4_prune_big/work/step16/float.2 data/local/local_lm/data/lm_4_prune_big/work/step16/float.3 data/local/local_lm/data/lm_4_prune_big/work/step16/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step16/log/float_counts_prune.log
+float-counts-prune 0.145111252477 152215 data/local/local_lm/data/lm_4_prune_big/work/step18/float.all data/local/local_lm/data/lm_4_prune_big/work/step18/protected.all data/local/local_lm/data/lm_4_prune_big/work/step19/float.1 data/local/local_lm/data/lm_4_prune_big/work/step19/float.2 data/local/local_lm/data/lm_4_prune_big/work/step19/float.3 data/local/local_lm/data/lm_4_prune_big/work/step19/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step19/log/float_counts_prune.log
+float-counts-prune 0.173820854827 152215 data/local/local_lm/data/lm_4_prune_big/work/step21/float.all data/local/local_lm/data/lm_4_prune_big/work/step21/protected.all data/local/local_lm/data/lm_4_prune_big/work/step22/float.1 data/local/local_lm/data/lm_4_prune_big/work/step22/float.2 data/local/local_lm/data/lm_4_prune_big/work/step22/float.3 data/local/local_lm/data/lm_4_prune_big/work/step22/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step22/log/float_counts_prune.log
+float-counts-prune 0.189289043691 152215 data/local/local_lm/data/lm_4_prune_big/work/step24/float.all data/local/local_lm/data/lm_4_prune_big/work/step24/protected.all data/local/local_lm/data/lm_4_prune_big/work/step25/float.1 data/local/local_lm/data/lm_4_prune_big/work/step25/float.2 data/local/local_lm/data/lm_4_prune_big/work/step25/float.3 data/local/local_lm/data/lm_4_prune_big/work/step25/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step25/log/float_counts_prune.log
+float-counts-prune 0.202529109857 152215 data/local/local_lm/data/lm_4_prune_big/work/step27/float.all data/local/local_lm/data/lm_4_prune_big/work/step27/protected.all data/local/local_lm/data/lm_4_prune_big/work/step28/float.1 data/local/local_lm/data/lm_4_prune_big/work/step28/float.2 data/local/local_lm/data/lm_4_prune_big/work/step28/float.3 data/local/local_lm/data/lm_4_prune_big/work/step28/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step28/log/float_counts_prune.log
+float-counts-prune 0.218679273555 152215 data/local/local_lm/data/lm_4_prune_big/work/step30/float.all data/local/local_lm/data/lm_4_prune_big/work/step30/protected.all data/local/local_lm/data/lm_4_prune_big/work/step31/float.1 data/local/local_lm/data/lm_4_prune_big/work/step31/float.2 data/local/local_lm/data/lm_4_prune_big/work/step31/float.3 data/local/local_lm/data/lm_4_prune_big/work/step31/float.4 2>>data/local/local_lm/data/lm_4_prune_big/work/step31/log/float_counts_prune.log
+prune_lm_dir.py: Find the threshold 0.218679273555 in 11 iteration(s)
+prune_lm_dir.py: thresholds per iter were [0.02, 0.031524658203125, 0.05286498926579952, 0.0790296741996599, 0.10604659346188494, 0.13083330181529612, 0.14511125247726814, 0.17382085482743076, 0.18928904369085814, 0.2025291098572231, 0.21867927355524935]
+prune_lm_dir.py: log-prob changes per step were [-0.0048132677666179345, 9.767163796540661e-05, 5.2574474548595944e-05, -0.0063915206288329, 7.445750821166151e-05, 4.647307239552678e-05, -0.011185089901080332, 8.991745618864988e-05, 5.543893941407659e-05, -0.014384172853101444, 0.00010739011562778863, 6.623728853784959e-05, -0.015131718847899144, 0.00011801638535001614, 7.373914446828306e-05, -0.013066129981583094, 0.00012376886783496934, 7.823525223566044e-05, -0.006433006132639693, 8.771378799673432e-05, 5.848302132184017e-05, -0.010494408475573867, 8.33684377907308e-05, 5.487141392469954e-05, -0.005741280449600334, 6.902155442480396e-05, 4.648265583170366e-05, -0.004512274772636655, 5.4432071047485234e-05, 3.736233837741366e-05, -0.005027198162106742, 4.711515312612732e-05, 3.238443391748467e-05]
+prune_lm_dir.py: reduced number of n-grams from 64900058 to 10492166, i.e. by 83.8333488084%
+prune_lm_dir.py: approximate K-L divergence was -0.00155515501054 + 0.0971800679717 = 0.0956249129611
+prune_lm_dir.py: exact K-L divergence was 0.113919003588
+validate_vocab.py: validated file data/local/local_lm/data/lm_4_prune_big/words.txt with 152215 entries.
+validate_lm_dir.py: validated LM directory data/local/local_lm/data/lm_4_prune_big
+get_data_prob.py: log-prob of data/local/local_lm/data/real_dev_set.txt given model data/local/local_lm/data/lm_4_prune_big was -5.16542374194 per word [perplexity = 175.111645] over 18290.0 words.
+validate_vocab.py: validated file data/local/local_lm/data/lm_4_prune_big/words.txt with 152215 entries.
+validate_lm_dir.py: validated LM directory data/local/local_lm/data/lm_4_prune_big
+format_arpa_lm.py: running float-counts-to-pre-arpa 4 152215 data/local/local_lm/data/lm_4_prune_big/float.all | sort  | pre-arpa-to-arpa data/local/local_lm/data/lm_4_prune_big/words.txt
+float-counts-to-pre-arpa: output [ 152215 4878850 4396708 1064394 ] n-grams
+pre-arpa-to-arpa: success
+format_arpa_lm.py: succeeded formatting ARPA lm from data/local/local_lm/data/lm_4_prune_big
+local/ted_train_lm.sh: pruning the LM (to smaller size)
+validate_vocab.py: validated file data/local/local_lm/data/lm_4_prune_big/words.txt with 152215 entries.
+validate_lm_dir.py: validated LM directory data/local/local_lm/data/lm_4_prune_big
+float-counts-estimate 152215 data/local/local_lm/data/lm_4_prune_small/work/step0/float.all data/local/local_lm/data/lm_4_prune_small/work/step0/stats.all /dev/null /dev/null /dev/null /dev/null 
+float-counts-prune 0.25 152215 data/local/local_lm/data/lm_4_prune_small/work/step0/float.all data/local/local_lm/data/lm_4_prune_small/work/step0/protected.all data/local/local_lm/data/lm_4_prune_small/work/step1/float.1 data/local/local_lm/data/lm_4_prune_small/work/step1/float.2 data/local/local_lm/data/lm_4_prune_small/work/step1/float.3 data/local/local_lm/data/lm_4_prune_small/work/step1/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step1/log/float_counts_prune.log
+float-counts-estimate: logprob per word was -5.27435 over 2.10676e+07 words.
+float-counts-estimate: auxiliary function improvement per word was [ 1.38328e-10 + 2.27821e-09 + 4.44716e-09 + 2.67981e-09 ] = 9.5435e-09
+2.10676e+07 -1.11118e+08 0.00291424 0.0479964 0.0936912 0.0564572 
+
+float-counts-prune 0.54296875 152215 data/local/local_lm/data/lm_4_prune_small/work/step3/float.all data/local/local_lm/data/lm_4_prune_small/work/step3/protected.all data/local/local_lm/data/lm_4_prune_small/work/step4/float.1 data/local/local_lm/data/lm_4_prune_small/work/step4/float.2 data/local/local_lm/data/lm_4_prune_small/work/step4/float.3 data/local/local_lm/data/lm_4_prune_small/work/step4/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step4/log/float_counts_prune.log
+float-counts-prune 0.7129778862 152215 data/local/local_lm/data/lm_4_prune_small/work/step6/float.all data/local/local_lm/data/lm_4_prune_small/work/step6/protected.all data/local/local_lm/data/lm_4_prune_small/work/step7/float.1 data/local/local_lm/data/lm_4_prune_small/work/step7/float.2 data/local/local_lm/data/lm_4_prune_small/work/step7/float.3 data/local/local_lm/data/lm_4_prune_small/work/step7/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step7/log/float_counts_prune.log
+float-counts-prune 0.895486995985 152215 data/local/local_lm/data/lm_4_prune_small/work/step9/float.all data/local/local_lm/data/lm_4_prune_small/work/step9/protected.all data/local/local_lm/data/lm_4_prune_small/work/step10/float.1 data/local/local_lm/data/lm_4_prune_small/work/step10/float.2 data/local/local_lm/data/lm_4_prune_small/work/step10/float.3 data/local/local_lm/data/lm_4_prune_small/work/step10/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step10/log/float_counts_prune.log
+float-counts-prune 1.03707385286 152215 data/local/local_lm/data/lm_4_prune_small/work/step12/float.all data/local/local_lm/data/lm_4_prune_small/work/step12/protected.all data/local/local_lm/data/lm_4_prune_small/work/step13/float.1 data/local/local_lm/data/lm_4_prune_small/work/step13/float.2 data/local/local_lm/data/lm_4_prune_small/work/step13/float.3 data/local/local_lm/data/lm_4_prune_small/work/step13/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step13/log/float_counts_prune.log
+float-counts-prune 1.22535364872 152215 data/local/local_lm/data/lm_4_prune_small/work/step15/float.all data/local/local_lm/data/lm_4_prune_small/work/step15/protected.all data/local/local_lm/data/lm_4_prune_small/work/step16/float.1 data/local/local_lm/data/lm_4_prune_small/work/step16/float.2 data/local/local_lm/data/lm_4_prune_small/work/step16/float.3 data/local/local_lm/data/lm_4_prune_small/work/step16/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step16/log/float_counts_prune.log
+float-counts-prune 1.30478025852 152215 data/local/local_lm/data/lm_4_prune_small/work/step18/float.all data/local/local_lm/data/lm_4_prune_small/work/step18/protected.all data/local/local_lm/data/lm_4_prune_small/work/step19/float.1 data/local/local_lm/data/lm_4_prune_small/work/step19/float.2 data/local/local_lm/data/lm_4_prune_small/work/step19/float.3 data/local/local_lm/data/lm_4_prune_small/work/step19/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step19/log/float_counts_prune.log
+float-counts-prune 1.43630153519 152215 data/local/local_lm/data/lm_4_prune_small/work/step21/float.all data/local/local_lm/data/lm_4_prune_small/work/step21/protected.all data/local/local_lm/data/lm_4_prune_small/work/step22/float.1 data/local/local_lm/data/lm_4_prune_small/work/step22/float.2 data/local/local_lm/data/lm_4_prune_small/work/step22/float.3 data/local/local_lm/data/lm_4_prune_small/work/step22/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step22/log/float_counts_prune.log
+float-counts-prune 1.46812388976 152215 data/local/local_lm/data/lm_4_prune_small/work/step24/float.all data/local/local_lm/data/lm_4_prune_small/work/step24/protected.all data/local/local_lm/data/lm_4_prune_small/work/step25/float.1 data/local/local_lm/data/lm_4_prune_small/work/step25/float.2 data/local/local_lm/data/lm_4_prune_small/work/step25/float.3 data/local/local_lm/data/lm_4_prune_small/work/step25/float.4 2>>data/local/local_lm/data/lm_4_prune_small/work/step25/log/float_counts_prune.log
+prune_lm_dir.py: Find the threshold 1.46812388976 in 9 iteration(s)
+prune_lm_dir.py: thresholds per iter were [0.25, 0.54296875, 0.7129778861999512, 0.8954869959852658, 1.0370738528639176, 1.2253536487222991, 1.3047802585210713, 1.4363015351902333, 1.4681238897601832]
+prune_lm_dir.py: log-prob changes per step were [-0.00861882701399305, 1.162722379388255e-05, 5.466215895498301e-06, -0.0644340124171714, 0.0002414131652395147, 0.00011970888947958001, -0.034877204807381955, 0.0002635335301600562, 0.00014482285594941997, -0.02807187339801401, 0.00025353011258994856, 0.00014400828760751107, -0.018881884979779377, 0.00020623910649528185, 0.00012077613966469841, -0.019280886289847917, 0.0001732463593385103, 0.00010184880574911237, -0.008864512331732138, 0.00010602577892118705, 6.555844994209117e-05, -0.009246188460004936, 7.928680058478423e-05, 4.913963621864854e-05, -0.0031818906757295562, 5.127451631889726e-05, 3.310194801496136e-05]
+prune_lm_dir.py: reduced number of n-grams from 10492166 to 2058936, i.e. by 80.3764446731%
+prune_lm_dir.py: approximate K-L divergence was -0.00217060782196 + 0.195457280374 = 0.193286672552
+prune_lm_dir.py: exact K-L divergence was 0.186874632137
+validate_vocab.py: validated file data/local/local_lm/data/lm_4_prune_small/words.txt with 152215 entries.
+validate_lm_dir.py: validated LM directory data/local/local_lm/data/lm_4_prune_small
+get_data_prob.py: log-prob of data/local/local_lm/data/real_dev_set.txt given model data/local/local_lm/data/lm_4_prune_small was -5.29556482996 per word [perplexity = 199.450249634] over 18290.0 words.
+validate_vocab.py: validated file data/local/local_lm/data/lm_4_prune_small/words.txt with 152215 entries.
+validate_lm_dir.py: validated LM directory data/local/local_lm/data/lm_4_prune_small
+format_arpa_lm.py: running float-counts-to-pre-arpa 4 152215 data/local/local_lm/data/lm_4_prune_small/float.all | sort  | pre-arpa-to-arpa data/local/local_lm/data/lm_4_prune_small/words.txt
+float-counts-to-pre-arpa: output [ 152215 1214298 622727 69697 ] n-grams
+pre-arpa-to-arpa: success
+format_arpa_lm.py: succeeded formatting ARPA lm from data/local/local_lm/data/lm_4_prune_small
+------------------stage 4 done--------------------
+
+------------------stage 5 done--------------------
+
+------------------stage 6 done--------------------
+
+------------------stage 7 done--------------------
+
+------------------stage 8 done--------------------
+
+------------------stage 9 done--------------------
+
+------------------stage 10 done--------------------
+
+------------------stage 11 done--------------------
+
+------------------stage 12 done--------------------
+
+------------------stage 13 done--------------------
+
+------------------stage 14 done--------------------
+
+------------------stage 15 done--------------------
+
+------------------stage 16 done--------------------
+
+------------------stage 17 done--------------------
+
+./run.sh: success.

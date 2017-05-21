@@ -64,6 +64,7 @@ train_stage=-10
 tree_affix=  # affix for tree directory, e.g. "a" or "b", in case we change the configuration.
 tdnn_lstm_affix=1a  #affix for TDNN-LSTM directory, e.g. "a" or "b", in case we change the configuration.
 common_egs_dir=  # you can set this to use previously dumped egs.
+minibatch_size="300=32,16/150=32,16"
 
 # End configuration section.
 echo "$0 $@"  # Print the command line for logging
@@ -80,15 +81,15 @@ If you want to use GPUs (and have them), go to src/, and configure and make on a
 where "nvcc" is installed.
 EOF
 fi
-
-local/nnet3/run_ivector_common.sh --stage $stage \
-                                  --nj $nj \
-                                  --min-seg-len $min_seg_len \
-                                  --train-set $train_set \
-                                  --gmm $gmm \
-                                  --num-threads-ubm $num_threads_ubm \
-                             --nnet3-affix "$nnet3_affix"
-
+if [ $stage -le 13]; then
+	local/nnet3/run_ivector_common.sh --stage $stage \
+        	                          --nj $nj \
+                	                  --min-seg-len $min_seg_len \
+                        	          --train-set $train_set \
+                                	  --gmm $gmm \
+                               		  --num-threads-ubm $num_threads_ubm \
+                            	 --nnet3-affix "$nnet3_affix"
+fi
 
 gmm_dir=exp/$gmm
 ali_dir=exp/${gmm}_ali_${train_set}_sp_comb
@@ -175,8 +176,8 @@ if [ $stage -le 17 ]; then
   relu-renorm-layer name=tdnn3 dim=512 input=Append(-3,0,3)
   relu-renorm-layer name=tdnn4 dim=512 input=Append(-3,0,3)
   fast-lstmp-layer name=lstm2 cell-dim=512 recurrent-projection-dim=128 non-recurrent-projection-dim=128 delay=-3
-  relu-renorm-layer name=tdnn5 dim=512 input=Append(-3,0,3)
-  relu-renorm-layer name=tdnn6 dim=512 input=Append(-3,0,3)
+  relu-renorm-layer name=tdnn5 dim=512 input=Append(-6,0,3)
+  relu-renorm-layer name=tdnn6 dim=512 input=Append(-6,0,3)
   fast-lstmp-layer name=lstm3 cell-dim=512 recurrent-projection-dim=128 non-recurrent-projection-dim=128 delay=-3
 
   ## adding the layers for chain branch
@@ -218,7 +219,7 @@ if [ $stage -le 18 ]; then
     --egs.chunk-width "$frames_per_chunk" \
     --egs.chunk-left-context "$chunk_left_context" \
     --egs.chunk-right-context "$chunk_right_context" \
-    --trainer.num-chunk-per-minibatch 128 \
+    --trainer.num-chunk-per-minibatch 64 \
     --trainer.frames-per-iter 1500000 \
     --trainer.max-param-change 2.0 \
     --trainer.num-epochs 4 \

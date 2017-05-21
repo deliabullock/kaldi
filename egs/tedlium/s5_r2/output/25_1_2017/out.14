@@ -1,0 +1,200 @@
+------------------stage 0 done--------------------
+
+------------------stage 1 done--------------------
+
+------------------stage 2 done--------------------
+
+------------------stage 3 done--------------------
+
+------------------stage 4 done--------------------
+
+------------------stage 5 done--------------------
+
+------------------stage 6 done--------------------
+
+------------------stage 7 done--------------------
+
+------------------stage 8 done--------------------
+
+------------------stage 9 done--------------------
+
+------------------stage 10 done--------------------
+
+------------------stage 11 done--------------------
+
+------------------stage 12 done--------------------
+
+------------------stage 13 done--------------------
+
+utils/prepare_lang.sh data/local/dict <unk> data/local/lang data/lang
+Checking data/local/dict/silence_phones.txt ...
+--> reading data/local/dict/silence_phones.txt
+--> data/local/dict/silence_phones.txt is OK
+
+Checking data/local/dict/optional_silence.txt ...
+--> reading data/local/dict/optional_silence.txt
+--> data/local/dict/optional_silence.txt is OK
+
+Checking data/local/dict/nonsilence_phones.txt ...
+--> reading data/local/dict/nonsilence_phones.txt
+--> data/local/dict/nonsilence_phones.txt is OK
+
+Checking disjoint: silence_phones.txt, nonsilence_phones.txt
+--> disjoint property is OK.
+
+Checking data/local/dict/lexicon.txt
+--> reading data/local/dict/lexicon.txt
+--> data/local/dict/lexicon.txt is OK
+
+Checking data/local/dict/lexiconp.txt
+--> reading data/local/dict/lexiconp.txt
+--> data/local/dict/lexiconp.txt is OK
+
+Checking data/local/dict/lexiconp_silprob.txt
+--> reading data/local/dict/lexiconp_silprob.txt
+--> data/local/dict/lexiconp_silprob.txt is OK
+
+Checking lexicon pair data/local/dict/lexicon.txt and data/local/dict/lexiconp.txt
+--> lexicon pair data/local/dict/lexicon.txt and data/local/dict/lexiconp.txt match
+
+Checking lexicon pair data/local/dict/lexiconp.txt and data/local/dict/lexiconp_silprob.txt
+--> lexicon pair data/local/dict/lexiconp.txt and data/local/dict/lexiconp_silprob.txt match
+
+Checking data/local/dict/extra_questions.txt ...
+--> data/local/dict/extra_questions.txt is empty (this is OK)
+--> SUCCESS [validating dictionary directory data/local/dict]
+
+fstaddselfloops data/lang/phones/wdisambig_phones.int data/lang/phones/wdisambig_words.int 
+prepare_lang.sh: validating output directory
+utils/validate_lang.pl data/lang
+Checking data/lang/phones.txt ...
+--> data/lang/phones.txt is OK
+
+Checking words.txt: #0 ...
+--> data/lang/words.txt is OK
+
+Checking disjoint: silence.txt, nonsilence.txt, disambig.txt ...
+--> silence.txt and nonsilence.txt are disjoint
+--> silence.txt and disambig.txt are disjoint
+--> disambig.txt and nonsilence.txt are disjoint
+--> disjoint property is OK
+
+Checking sumation: silence.txt, nonsilence.txt, disambig.txt ...
+--> summation property is OK
+
+Checking data/lang/phones/context_indep.{txt, int, csl} ...
+--> 10 entry/entries in data/lang/phones/context_indep.txt
+--> data/lang/phones/context_indep.int corresponds to data/lang/phones/context_indep.txt
+--> data/lang/phones/context_indep.csl corresponds to data/lang/phones/context_indep.txt
+--> data/lang/phones/context_indep.{txt, int, csl} are OK
+
+Checking data/lang/phones/nonsilence.{txt, int, csl} ...
+--> 252 entry/entries in data/lang/phones/nonsilence.txt
+--> data/lang/phones/nonsilence.int corresponds to data/lang/phones/nonsilence.txt
+--> data/lang/phones/nonsilence.csl corresponds to data/lang/phones/nonsilence.txt
+--> data/lang/phones/nonsilence.{txt, int, csl} are OK
+
+Checking data/lang/phones/silence.{txt, int, csl} ...
+--> 10 entry/entries in data/lang/phones/silence.txt
+--> data/lang/phones/silence.int corresponds to data/lang/phones/silence.txt
+--> data/lang/phones/silence.csl corresponds to data/lang/phones/silence.txt
+--> data/lang/phones/silence.{txt, int, csl} are OK
+
+Checking data/lang/phones/optional_silence.{txt, int, csl} ...
+--> 1 entry/entries in data/lang/phones/optional_silence.txt
+--> data/lang/phones/optional_silence.int corresponds to data/lang/phones/optional_silence.txt
+--> data/lang/phones/optional_silence.csl corresponds to data/lang/phones/optional_silence.txt
+--> data/lang/phones/optional_silence.{txt, int, csl} are OK
+
+Checking data/lang/phones/disambig.{txt, int, csl} ...
+--> 2 entry/entries in data/lang/phones/disambig.txt
+--> data/lang/phones/disambig.int corresponds to data/lang/phones/disambig.txt
+--> data/lang/phones/disambig.csl corresponds to data/lang/phones/disambig.txt
+--> data/lang/phones/disambig.{txt, int, csl} are OK
+
+Checking data/lang/phones/roots.{txt, int} ...
+--> 65 entry/entries in data/lang/phones/roots.txt
+--> data/lang/phones/roots.int corresponds to data/lang/phones/roots.txt
+--> data/lang/phones/roots.{txt, int} are OK
+
+Checking data/lang/phones/sets.{txt, int} ...
+--> 65 entry/entries in data/lang/phones/sets.txt
+--> data/lang/phones/sets.int corresponds to data/lang/phones/sets.txt
+--> data/lang/phones/sets.{txt, int} are OK
+
+Checking data/lang/phones/extra_questions.{txt, int} ...
+--> 9 entry/entries in data/lang/phones/extra_questions.txt
+--> data/lang/phones/extra_questions.int corresponds to data/lang/phones/extra_questions.txt
+--> data/lang/phones/extra_questions.{txt, int} are OK
+
+Checking data/lang/phones/word_boundary.{txt, int} ...
+--> 262 entry/entries in data/lang/phones/word_boundary.txt
+--> data/lang/phones/word_boundary.int corresponds to data/lang/phones/word_boundary.txt
+--> data/lang/phones/word_boundary.{txt, int} are OK
+
+Checking optional_silence.txt ...
+--> reading data/lang/phones/optional_silence.txt
+--> data/lang/phones/optional_silence.txt is OK
+
+Checking disambiguation symbols: #0 and #1
+--> data/lang/phones/disambig.txt has "#0" and "#1"
+--> data/lang/phones/disambig.txt is OK
+
+Checking topo ...
+
+Checking word_boundary.txt: silence.txt, nonsilence.txt, disambig.txt ...
+--> data/lang/phones/word_boundary.txt doesn't include disambiguation symbols
+--> data/lang/phones/word_boundary.txt is the union of nonsilence.txt and silence.txt
+--> data/lang/phones/word_boundary.txt is OK
+
+Checking word-level disambiguation symbols...
+--> data/lang/phones/wdisambig.txt exists (newer prepare_lang.sh)
+Checking word_boundary.int and disambig.int
+--> generating a 77 word sequence
+--> resulting phone sequence from L.fst corresponds to the word sequence
+--> L.fst is OK
+--> generating a 21 word sequence
+--> resulting phone sequence from L_disambig.fst corresponds to the word sequence
+--> L_disambig.fst is OK
+
+Checking data/lang/oov.{txt, int} ...
+--> 1 entry/entries in data/lang/oov.txt
+--> data/lang/oov.int corresponds to data/lang/oov.txt
+--> data/lang/oov.{txt, int} are OK
+
+--> data/lang/L.fst is olabel sorted
+--> data/lang/L_disambig.fst is olabel sorted
+--> SUCCESS [validating lang directory data/lang]
+tree-info exp/tri2/tree 
+tree-info exp/tri2/tree 
+fstpushspecial 
+fstminimizeencoded 
+fsttablecompose data/lang/L_disambig.fst data/lang/G.fst 
+fstdeterminizestar --use-log=true 
+WARNING (fstpushspecial[5.0.37~1-e227e]:Iterate():push-special.cc:182) push-special: finished 200 iterations without converging.  Output will be inaccurate.
+fstisstochastic data/lang/tmp/LG.fst 
+-0.0306589 -0.0681119
+[info]: LG not stochastic.
+fstcomposecontext --context-size=3 --central-position=1 --read-disambig-syms=data/lang/phones/disambig.int --write-disambig-syms=data/lang/tmp/disambig_ilabels_3_1.int data/lang/tmp/ilabels_3_1.36953 
+fstisstochastic data/lang/tmp/CLG_3_1.fst 
+0 -0.0681119
+[info]: CLG not stochastic.
+make-h-transducer --disambig-syms-out=exp/tri2/graph/disambig_tid.int --transition-scale=1.0 data/lang/tmp/ilabels_3_1 exp/tri2/tree exp/tri2/final.mdl 
+fstrmepslocal 
+fstminimizeencoded 
+fstrmsymbols exp/tri2/graph/disambig_tid.int 
+fstdeterminizestar --use-log=true 
+fsttablecompose exp/tri2/graph/Ha.fst data/lang/tmp/CLG_3_1.fst 
+fstisstochastic exp/tri2/graph/HCLGa.fst 
+0.000488162 -0.11712
+HCLGa is not stochastic
+add-self-loops --self-loop-scale=0.1 --reorder=true exp/tri2/final.mdl 
+------------------stage 14 done--------------------
+
+------------------stage 15 done--------------------
+
+------------------stage 16 done--------------------
+
+------------------stage 17 done--------------------
+
+./run.sh: success.

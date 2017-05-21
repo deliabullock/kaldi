@@ -40,6 +40,9 @@ class RunOpts(object):
         self.prior_queue_opt = None
         self.parallel_train_opts = None
 
+#def get_dropout_edit_string(dropout_schedule, data_fraction, iter_):
+#    print "In drop out schedule method"
+#    return dropout_schedule.get_dropout_edit_string(dropout_schedule, data_fraction, iter_)
 
 def get_successful_models(num_models, log_file_pattern,
                           difference_threshold=1.0):

@@ -1,0 +1,112 @@
+------------------stage 0 done--------------------
+
+------------------stage 1 done--------------------
+
+------------------stage 2 done--------------------
+
+------------------stage 3 done--------------------
+
+------------------stage 4 done--------------------
+
+------------------stage 5 done--------------------
+
+------------------stage 6 done--------------------
+
+------------------stage 7 done--------------------
+
+steps/train_mono.sh --nj 2 --cmd run.pl --max-jobs-run 2 data/train_10kshort_nodup data/lang_nosp exp/mono
+filter_scps.pl: warning: some input lines were output to multiple files
+filter_scps.pl: warning: some input lines were output to multiple files
+steps/train_mono.sh: Initializing monophone system.
+steps/train_mono.sh: Compiling training graphs
+steps/train_mono.sh: Aligning data equally (pass 0)
+steps/train_mono.sh: Pass 1
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 2
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 3
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 4
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 5
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 6
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 7
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 8
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 9
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 10
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 11
+steps/train_mono.sh: Pass 12
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 13
+steps/train_mono.sh: Pass 14
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 15
+steps/train_mono.sh: Pass 16
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 17
+steps/train_mono.sh: Pass 18
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 19
+steps/train_mono.sh: Pass 20
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 21
+steps/train_mono.sh: Pass 22
+steps/train_mono.sh: Pass 23
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 24
+steps/train_mono.sh: Pass 25
+steps/train_mono.sh: Pass 26
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 27
+steps/train_mono.sh: Pass 28
+steps/train_mono.sh: Pass 29
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 30
+steps/train_mono.sh: Pass 31
+steps/train_mono.sh: Pass 32
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 33
+steps/train_mono.sh: Pass 34
+steps/train_mono.sh: Pass 35
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 36
+steps/train_mono.sh: Pass 37
+steps/train_mono.sh: Pass 38
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 39
+steps/diagnostic/analyze_alignments.sh --cmd run.pl --max-jobs-run 2 data/lang_nosp exp/mono
+analyze_phone_length_stats.py: WARNING: optional-silence SIL is seen only 71.1686643836% of the time at utterance begin.  This may not be optimal.
+steps/diagnostic/analyze_alignments.sh: see stats in exp/mono/log/analyze_alignments.log
+10488 warnings in exp/mono/log/align.*.*.log
+1 warnings in exp/mono/log/analyze_alignments.log
+530 warnings in exp/mono/log/acc.*.*.log
+4321 warnings in exp/mono/log/update.*.log
+exp/mono: nj=2 align prob=-97.45 over 4.65h [retry=3.2%, fail=0.1%] states=199 gauss=982
+steps/train_mono.sh: Done training monophone system in exp/mono
+------------------stage 8 done--------------------
+
+------------------stage 9 done--------------------
+
+------------------stage 10 done--------------------
+
+------------------stage 11 done--------------------
+
+------------------stage 12 done--------------------
+
+------------------stage 13 done--------------------
+
+------------------stage 14 done--------------------
+
+------------------stage 15 done--------------------
+
+------------------stage 16 done--------------------
+
+------------------stage 17 done--------------------
+
+./run.sh: success.

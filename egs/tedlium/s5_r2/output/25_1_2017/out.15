@@ -1,0 +1,155 @@
+------------------stage 0 done--------------------
+
+------------------stage 1 done--------------------
+
+------------------stage 2 done--------------------
+
+------------------stage 3 done--------------------
+
+------------------stage 4 done--------------------
+
+------------------stage 5 done--------------------
+
+------------------stage 6 done--------------------
+
+------------------stage 7 done--------------------
+
+------------------stage 8 done--------------------
+
+------------------stage 9 done--------------------
+
+------------------stage 10 done--------------------
+
+------------------stage 11 done--------------------
+
+------------------stage 12 done--------------------
+
+------------------stage 13 done--------------------
+
+------------------stage 14 done--------------------
+
+steps/align_si.sh --nj 2 --cmd run.pl --max-jobs-run 2 data/train data/lang exp/tri2 exp/tri2_ali
+steps/align_si.sh: feature type is lda
+steps/align_si.sh: aligning data in data/train using model from exp/tri2, putting alignments in exp/tri2_ali
+steps/diagnostic/analyze_alignments.sh --cmd run.pl --max-jobs-run 2 data/lang exp/tri2_ali
+analyze_phone_length_stats.py: WARNING: optional-silence SIL is seen only 79.2735552423% of the time at utterance begin.  This may not be optimal.
+steps/diagnostic/analyze_alignments.sh: see stats in exp/tri2_ali/log/analyze_alignments.log
+steps/align_si.sh: done aligning data.
+steps/train_sat.sh --cmd run.pl --max-jobs-run 2 5000 100000 data/train data/lang exp/tri2_ali exp/tri3
+steps/train_sat.sh: feature type is lda
+steps/train_sat.sh: obtaining initial fMLLR transforms since not present in exp/tri2_ali
+steps/train_sat.sh: Accumulating tree stats
+steps/train_sat.sh: Getting questions for tree clustering.
+steps/train_sat.sh: Building the tree
+steps/train_sat.sh: Initializing the model
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 3 with no stats; corresponding phone list: 15 16 17 18 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 4 with no stats; corresponding phone list: 19 20 21 22 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 31 with no stats; corresponding phone list: 127 128 129 130 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 32 with no stats; corresponding phone list: 131 132 133 134 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 34 with no stats; corresponding phone list: 139 140 141 142 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 35 with no stats; corresponding phone list: 143 144 145 146 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 36 with no stats; corresponding phone list: 147 148 149 150 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 37 with no stats; corresponding phone list: 151 152 153 154 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 38 with no stats; corresponding phone list: 155 156 157 158 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 39 with no stats; corresponding phone list: 159 160 161 162 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 40 with no stats; corresponding phone list: 163 164 165 166 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 41 with no stats; corresponding phone list: 167 168 169 170 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 42 with no stats; corresponding phone list: 171 172 173 174 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 43 with no stats; corresponding phone list: 175 176 177 178 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 44 with no stats; corresponding phone list: 179 180 181 182 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 45 with no stats; corresponding phone list: 183 184 185 186 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 47 with no stats; corresponding phone list: 191 192 193 194 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 48 with no stats; corresponding phone list: 195 196 197 198 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 49 with no stats; corresponding phone list: 199 200 201 202 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 50 with no stats; corresponding phone list: 203 204 205 206 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 51 with no stats; corresponding phone list: 207 208 209 210 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 52 with no stats; corresponding phone list: 211 212 213 214 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 53 with no stats; corresponding phone list: 215 216 217 218 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 54 with no stats; corresponding phone list: 219 220 221 222 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 55 with no stats; corresponding phone list: 223 224 225 226 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 56 with no stats; corresponding phone list: 227 228 229 230 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 57 with no stats; corresponding phone list: 231 232 233 234 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 58 with no stats; corresponding phone list: 235 236 237 238 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 59 with no stats; corresponding phone list: 239 240 241 242 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 62 with no stats; corresponding phone list: 251 252 253 254 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 63 with no stats; corresponding phone list: 255 256 257 258 
+WARNING (gmm-init-model[5.0.37~1-e227e]:InitAmGmm():gmm-init-model.cc:55) Tree has pdf-id 64 with no stats; corresponding phone list: 259 260 261 262 
+This is a bad warning.
+steps/train_sat.sh: Converting alignments from exp/tri2_ali to use current tree
+steps/train_sat.sh: Compiling graphs of transcripts
+Pass 1
+Pass 2
+Estimating fMLLR transforms
+Pass 3
+Pass 4
+Estimating fMLLR transforms
+Pass 5
+Pass 6
+Estimating fMLLR transforms
+Pass 7
+Pass 8
+Pass 9
+Pass 10
+Aligning data
+Pass 11
+Pass 12
+Estimating fMLLR transforms
+Pass 13
+Pass 14
+Pass 15
+Pass 16
+Pass 17
+Pass 18
+Pass 19
+Pass 20
+Aligning data
+Pass 21
+Pass 22
+Pass 23
+Pass 24
+Pass 25
+Pass 26
+Pass 27
+Pass 28
+Pass 29
+Pass 30
+Aligning data
+Pass 31
+Pass 32
+Pass 33
+Pass 34
+steps/diagnostic/analyze_alignments.sh --cmd run.pl --max-jobs-run 2 data/lang exp/tri3
+analyze_phone_length_stats.py: WARNING: optional-silence SIL is seen only 79.5569977427% of the time at utterance begin.  This may not be optimal.
+steps/diagnostic/analyze_alignments.sh: see stats in exp/tri3/log/analyze_alignments.log
+36 warnings in exp/tri3/log/init_model.log
+36 warnings in exp/tri3/log/est_alimdl.log
+33 warnings in exp/tri3/log/questions.log
+1 warnings in exp/tri3/log/analyze_alignments.log
+3930 warnings in exp/tri3/log/fmllr.*.*.log
+1224 warnings in exp/tri3/log/update.*.log
+28422 warnings in exp/tri3/log/acc.*.*.log
+1 warnings in exp/tri3/log/build_tree.log
+29668 warnings in exp/tri3/log/align.*.*.log
+steps/train_sat.sh: Likelihood evolution:
+-50.9311 -50.5892 -50.5299 -50.3799 -49.6933 -48.9003 -48.3202 -47.9035 -47.5971 -47.0339 -46.8174 -46.5356 -46.3833 -46.271 -46.1686 -46.0764 -45.9932 -45.9181 -45.8504 -45.6886 -45.6034 -45.5506 -45.5039 -45.4607 -45.4198 -45.3813 -45.3448 -45.3098 -45.2762 -45.1969 -45.147 -45.122 -45.1057 -45.0946 
+exp/tri3: nj=2 align prob=-48.35 over 209.00h [retry=8.5%, fail=0.9%] states=3565 gauss=100140 fmllr-impr=2.97 over 172.52h tree-impr=6.90
+steps/train_sat.sh: done training SAT system in exp/tri3
+tree-info exp/tri3/tree 
+tree-info exp/tri3/tree 
+make-h-transducer --disambig-syms-out=exp/tri3/graph/disambig_tid.int --transition-scale=1.0 data/lang/tmp/ilabels_3_1 exp/tri3/tree exp/tri3/final.mdl 
+fstrmepslocal 
+fsttablecompose exp/tri3/graph/Ha.fst data/lang/tmp/CLG_3_1.fst 
+fstrmsymbols exp/tri3/graph/disambig_tid.int 
+fstminimizeencoded 
+fstdeterminizestar --use-log=true 
+fstisstochastic exp/tri3/graph/HCLGa.fst 
+0.000488162 -0.11712
+HCLGa is not stochastic
+add-self-loops --self-loop-scale=0.1 --reorder=true exp/tri3/final.mdl 
+------------------stage 15 done--------------------
+
+------------------stage 16 done--------------------
+
+------------------stage 17 done--------------------
+
+./run.sh: success.

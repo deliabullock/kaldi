@@ -427,7 +427,8 @@ def train(args, run_opts, background_process_handler):
                             iter, learning_rate(iter, current_num_jobs,
                                                 num_archives_processed),
                             shrinkage_value))
-
+            print "about to train"
+            logger.info("About to train")
             chain_lib.train_one_iteration(
                 dir=args.dir,
                 iter=iter,

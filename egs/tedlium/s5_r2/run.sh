@@ -203,7 +203,7 @@ if [ $stage == 17 ]; then
   # This will only work if you have GPUs on your system (and note that it requires
   # you to have the queue set up the right way... see kaldi-asr.org/doc/queue.html)
   # local/chain/run_tdnn.sh --train-set train --gmm tri3 --nnet3-affix ""
-  local/chain/run_tdnn_lstm.sh
+  local/chain/run_tdnn_lstm.sh --stage 17
 fi
 echo -e "------------------stage 17 done--------------------\n" 
 

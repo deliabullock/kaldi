@@ -1,0 +1,4 @@
+%WER 10.9 | 507 17783 | 90.6 6.6 2.8 1.4 10.9 82.1 | -0.170 | exp/chain_cleaned/tdnn_lstm1a_sp_bi/decode_dev/score_10_0.0/ctm.filt.filt.sys
+%WER 10.4 | 507 17783 | 90.9 6.1 3.0 1.4 10.4 80.7 | -0.128 | exp/chain_cleaned/tdnn_lstm1a_sp_bi/decode_dev_rescore/score_11_0.0/ctm.filt.filt.sys
+%WER 10.5 | 1155 27500 | 90.8 6.5 2.7 1.4 10.5 75.8 | -0.158 | exp/chain_cleaned/tdnn_lstm1a_sp_bi/decode_test/score_10_0.0/ctm.filt.filt.sys
+%WER 10.1 | 1155 27500 | 91.2 6.1 2.7 1.3 10.1 74.7 | -0.186 | exp/chain_cleaned/tdnn_lstm1a_sp_bi/decode_test_rescore/score_10_0.0/ctm.filt.filt.sys

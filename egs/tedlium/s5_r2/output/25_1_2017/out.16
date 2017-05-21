@@ -1,0 +1,68 @@
+------------------stage 0 done--------------------
+
+------------------stage 1 done--------------------
+
+------------------stage 2 done--------------------
+
+------------------stage 3 done--------------------
+
+------------------stage 4 done--------------------
+
+------------------stage 5 done--------------------
+
+------------------stage 6 done--------------------
+
+------------------stage 7 done--------------------
+
+------------------stage 8 done--------------------
+
+------------------stage 9 done--------------------
+
+------------------stage 10 done--------------------
+
+------------------stage 11 done--------------------
+
+------------------stage 12 done--------------------
+
+------------------stage 13 done--------------------
+
+------------------stage 14 done--------------------
+
+------------------stage 15 done--------------------
+
+steps/cleanup/clean_and_segment_data.sh: Building biased-language-model decoding graphs...
+steps/cleanup/make_biased_lm_graphs.sh --nj 8 --cmd run.pl --max-jobs-run 2 data/train data/lang exp/tri3_cleaned_work
+sym2int.pl: replacing kempelen's with 38
+sym2int.pl: replacing narrator's with 38
+sym2int.pl: replacing cash's with 38
+sym2int.pl: replacing doc's with 38
+sym2int.pl: replacing would've with 38
+sym2int.pl: replacing would've with 38
+sym2int.pl: replacing nanny's with 38
+sym2int.pl: replacing nanny's with 38
+sym2int.pl: replacing mit's with 38
+sym2int.pl: replacing rubik's with 38
+sym2int.pl: replacing who'm with 38
+sym2int.pl: replacing heel's with 38
+sym2int.pl: replacing shoney's with 38
+sym2int.pl: replacing l'oeil with 38
+sym2int.pl: replacing holbein's with 38
+sym2int.pl: replacing bat's with 38
+sym2int.pl: replacing who've with 38
+sym2int.pl: replacing who've with 38
+sym2int.pl: replacing rosling's with 38
+sym2int.pl: replacing insulin's with 38
+sym2int.pl: not warning for OOVs any more times
+** Replaced 1027 instances of OOVs with 38
+filter_scps.pl: warning: some input lines were output to multiple files
+filter_scps.pl: warning: some input lines were output to multiple files
+steps/cleanup/make_biased_lm_graphs.sh: creating utterance-group-specific decoding graphs with biased LMs
+steps/cleanup/clean_and_segment_data.sh: Decoding with biased language models...
+steps/cleanup/decode_segmentation.sh --beam 15.0 --nj 8 --cmd run.pl --max-jobs-run 2 --mem 4G --transform-dir exp/tri3 --skip-scoring true --allow-partial false exp/tri3_cleaned_work data/train exp/tri3_cleaned_work/lats
+filter_scps.pl: warning: some input lines were output to multiple files
+filter_scps.pl: warning: some input lines were output to multiple files
+steps/cleanup/decode_segmentation.sh: feature type is lda
+Using fMLLR transforms from exp/tri3
+steps/cleanup/decode_segmentation.sh: num-jobs for transforms mismatches, so copying them.
+copy-feats ark:- ark,scp:exp/tri3_cleaned_work/lats/trans.ark,exp/tri3_cleaned_work/lats/trans.scp 
+LOG (copy-feats[5.0.37~1-e227e]:main():copy-feats.cc:120) Copied 5079 feature matrices.

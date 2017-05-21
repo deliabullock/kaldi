@@ -1,0 +1,55 @@
+------------------stage 0 done--------------------
+
+------------------stage 1 done--------------------
+
+------------------stage 2 done--------------------
+
+------------------stage 3 done--------------------
+
+------------------stage 4 done--------------------
+
+------------------stage 5 done--------------------
+
+steps/make_mfcc.sh --nj 2 --cmd run.pl --max-jobs-run 2 data/test
+utils/validate_data_dir.sh: Successfully validated data-directory data/test
+steps/make_mfcc.sh [info]: segments file exists: using that.
+Succeeded creating MFCC features for test
+steps/compute_cmvn_stats.sh data/test
+Succeeded creating CMVN stats for test
+steps/make_mfcc.sh --nj 2 --cmd run.pl --max-jobs-run 2 data/dev
+utils/validate_data_dir.sh: Successfully validated data-directory data/dev
+steps/make_mfcc.sh [info]: segments file exists: using that.
+Succeeded creating MFCC features for dev
+steps/compute_cmvn_stats.sh data/dev
+Succeeded creating CMVN stats for dev
+steps/make_mfcc.sh --nj 2 --cmd run.pl --max-jobs-run 2 data/train
+utils/validate_data_dir.sh: Successfully validated data-directory data/train
+steps/make_mfcc.sh [info]: segments file exists: using that.
+Succeeded creating MFCC features for train
+steps/compute_cmvn_stats.sh data/train
+Succeeded creating CMVN stats for train
+------------------stage 6 done--------------------
+
+------------------stage 7 done--------------------
+
+------------------stage 8 done--------------------
+
+------------------stage 9 done--------------------
+
+------------------stage 10 done--------------------
+
+------------------stage 11 done--------------------
+
+------------------stage 12 done--------------------
+
+------------------stage 13 done--------------------
+
+------------------stage 14 done--------------------
+
+------------------stage 15 done--------------------
+
+------------------stage 16 done--------------------
+
+------------------stage 17 done--------------------
+
+./run.sh: success.
